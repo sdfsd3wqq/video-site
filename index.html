@@ -18,6 +18,7 @@
             --color-secondary: #e0e0e0; /* Slightly darker light for accents/borders */
             --color-text: #222; /* Dark text */
             --color-accent: #8e44ad; /* Purple accent */
+            --color-accent-light: #a569bd; /* Lighter purple */
             --color-overlay: rgba(0, 0, 0, 0.4); /* Dark video overlay */
             --color-header-bg: rgba(255, 255, 255, 0.8); /* Light header background */
             --color-header-text: #222;
@@ -35,6 +36,7 @@
             --color-secondary: #2a2a2a; /* Slightly lighter dark for accents/borders */
             --color-text: #f0f0f0; /* Light text */
             --color-accent: #9b59b6; /* Slightly brighter purple */
+            --color-accent-light: #bb8fce; /* Lighter purple for dark mode */
             --color-overlay: rgba(0, 0, 0, 0.6); /* Darker video overlay */
             --color-header-bg: rgba(0, 0, 0, 0.8); /* Dark header background */
             --color-header-text: #f0f0f0;
@@ -344,6 +346,70 @@
             font-weight: 300;
         }
 
+        /* --- New Immersive Elements --- */
+        .scene-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.4;
+            transition: opacity 0.8s ease;
+        }
+
+        .scene-background.active {
+            opacity: 0.7;
+        }
+
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-accent-light));
+            z-index: 1001;
+            transition: width 0.1s ease;
+        }
+
+        .story-indicator {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .story-indicator-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--color-secondary);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .story-indicator-dot.active {
+            background-color: var(--color-accent);
+            transform: scale(1.4);
+        }
+
+        .quote-highlight {
+            font-style: italic;
+            font-size: 1.3em;
+            color: var(--color-accent);
+            margin: 2em 0;
+            padding: 1.5em;
+            border-left: 4px solid var(--color-accent);
+            background-color: rgba(142, 68, 173, 0.05);
+            border-radius: 0 8px 8px 0;
+        }
+
         /* --- Footer --- */
         .site-footer {
             background-color: var(--color-secondary);
@@ -381,6 +447,10 @@
 
             .main-nav .nav-links {
                 gap: 1.5vw;
+            }
+            
+            .story-indicator {
+                right: 1rem;
             }
         }
 
@@ -465,6 +535,10 @@
             .scene-text-content {
                 padding: 2em;
             }
+            
+            .story-indicator {
+                display: none;
+            }
         }
 
         @media (max-width: 480px) {
@@ -483,10 +557,26 @@
             .scene-text-content {
                 padding: 1.5em;
             }
+            
+            .quote-highlight {
+                font-size: 1.1em;
+                padding: 1em;
+            }
         }
     </style>
 </head>
 <body data-theme="dark">
+    <div class="scroll-progress"></div>
+    
+    <div class="story-indicator">
+        <div class="story-indicator-dot active" data-section="hero-section"></div>
+        <div class="story-indicator-dot" data-section="intro"></div>
+        <div class="story-indicator-dot" data-section="depths"></div>
+        <div class="story-indicator-dot" data-section="harmony"></div>
+        <div class="story-indicator-dot" data-section="echoes"></div>
+        <div class="story-indicator-dot" data-section="outro"></div>
+    </div>
+
     <header class="site-header">
         <nav class="main-nav">
             <a href="#hero-section" class="nav-brand ripple-effect">The Unfolding Path</a>
@@ -515,41 +605,57 @@
             <div class="hero-content">
                 <h1 class="hero-title">The Silence Before the Echo</h1>
                 <p class="hero-subtitle">A journey through the human heart's unspoken tales.</p>
+                <p class="hero-subtitle" style="margin-top: 1em; font-size: 1.1em;">Scroll to begin the journey</p>
             </div>
         </section>
 
         <section id="intro" class="narrative-section cinematic-block scene-1" data-scroll-fade data-scroll-parallax>
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Mountain landscape at dawn" class="scene-background">
             <div class="scene-text-content">
                 <h2 class="section-title">The First Breath</h2>
                 <p class="section-description">Every story begins with a flicker, a nascent pulse in the vast expanse. It is in the quiet hum of existence that our first movements find their rhythm, a gentle stirring of what is to become.</p>
+                <p class="section-description">In these early moments, we are both fragile and formidable—a paradox of vulnerability and strength. The world unfolds before us, a canvas waiting for the first brushstroke of our journey.</p>
+                <blockquote class="quote-highlight">"The beginning is always today." — Mary Shelley</blockquote>
             </div>
         </section>
 
         <section id="depths" class="narrative-section cinematic-block scene-2" data-scroll-fade data-scroll-parallax>
+            <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Ocean depths with light filtering through water" class="scene-background">
             <div class="scene-text-content">
                 <h2 class="section-title">The Depths She'll Reach</h2>
                 <p class="section-description">Beneath the surface, the ocean of emotion stretches boundless. Here, fear and hope intertwine, guiding the descent into the self, revealing hidden currents and the profound resilience of the spirit.</p>
+                <p class="section-description">In the quiet darkness, we discover our own light. The pressure that once seemed crushing becomes the force that shapes our strength, our character, our very essence.</p>
+                <blockquote class="quote-highlight">"The wound is the place where the Light enters you." — Rumi</blockquote>
             </div>
         </section>
 
         <section id="harmony" class="narrative-section cinematic-block scene-3" data-scroll-fade data-scroll-parallax>
+            <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Diverse hands reaching toward each other" class="scene-background">
             <div class="scene-text-content">
                 <h2 class="section-title">Harmony of Humankind</h2>
                 <p class="section-description">From isolation emerges connection. Hands reach across divides, forging invisible bonds, weaving a tapestry of shared laughter, collective strength, and the silent language of understanding.</p>
+                <p class="section-description">Our differences become the notes in a grand symphony, each unique voice contributing to a harmony greater than any single part. In this chorus of humanity, we find our shared rhythm.</p>
+                <blockquote class="quote-highlight">"Alone we can do so little; together we can do so much." — Helen Keller</blockquote>
             </div>
         </section>
 
         <section id="echoes" class="narrative-section cinematic-block scene-4" data-scroll-fade data-scroll-parallax>
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Mountain range with misty peaks" class="scene-background">
             <div class="scene-text-content">
                 <h2 class="section-title">Whispers of the Future</h2>
                 <p class="section-description">The past resonates, shaping the present, but the future beckons with new melodies. What echoes will we leave behind, what stories will unfold for those yet to come?</p>
+                <p class="section-description">Each choice we make sends ripples through time, creating patterns that will be read by generations we will never meet. Our legacy is written in the spaces between our actions.</p>
+                <blockquote class="quote-highlight">"The future belongs to those who believe in the beauty of their dreams." — Eleanor Roosevelt</blockquote>
             </div>
         </section>
 
         <section id="outro" class="narrative-section cinematic-block scene-5" data-scroll-fade data-scroll-parallax>
+            <img src="https://images.unsplash.com/photo-1505506874110-6a7a69069a08?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2067&q=80" alt="Path leading into a forest" class="scene-background">
             <div class="scene-text-content">
                 <h2 class="section-title">The Unwritten Chapters</h2>
                 <p class="section-description">This journey is but a prelude. The narrative continues, evolving with every beat of a human heart, every shared glance, every silent understanding that binds us all.</p>
+                <p class="section-description">The path unfolds before us, not as a predetermined route, but as a landscape of possibilities. Our steps create the way forward, moment by precious moment.</p>
+                <blockquote class="quote-highlight">"The journey of a thousand miles begins with a single step." — Lao Tzu</blockquote>
             </div>
         </section>
     </main>
@@ -560,6 +666,7 @@
             <div class="footer-links">
                 <a href="#" class="ripple-effect">Privacy Policy</a>
                 <a href="#" class="ripple-effect">Terms of Service</a>
+                <a href="#" class="ripple-effect">Contact Us</a>
             </div>
         </div>
     </footer>
@@ -622,12 +729,29 @@
                 element.addEventListener('mouseleave', resetRipple);
             });
 
+            // --- Scroll Progress Bar ---
+            const scrollProgress = document.querySelector('.scroll-progress');
+            
+            // --- Story Indicator Dots ---
+            const storyIndicatorDots = document.querySelectorAll('.story-indicator-dot');
+            
+            // Scroll to section when indicator dot is clicked
+            storyIndicatorDots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    const sectionId = dot.getAttribute('data-section');
+                    const section = document.getElementById(sectionId);
+                    if (section) {
+                        section.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
 
             // --- Scroll-based Animations (Opacity & Parallax) ---
             const cinematicBlocks = document.querySelectorAll('.cinematic-block');
             const heroContent = document.querySelector('.hero-content');
             const backgroundVideo = document.querySelector('.background-video');
             const siteHeader = document.querySelector('.site-header');
+            const sceneBackgrounds = document.querySelectorAll('.scene-background');
 
             // Intersection Observer for fade-in effect
             const observerOptions = {
@@ -643,6 +767,16 @@
                         if (entry.target.id === 'hero-section' && heroContent) {
                             heroContent.classList.add('is-visible');
                         }
+                        
+                        // Update story indicator
+                        const sectionId = entry.target.id;
+                        storyIndicatorDots.forEach(dot => {
+                            if (dot.getAttribute('data-section') === sectionId) {
+                                dot.classList.add('active');
+                            } else {
+                                dot.classList.remove('active');
+                            }
+                        });
                     } 
                 });
             }, observerOptions);
@@ -657,10 +791,18 @@
 
             const updateScrollEffects = () => {
                 const scrollY = window.scrollY;
+                const windowHeight = window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight - windowHeight;
+                
+                // Update scroll progress bar
+                if (scrollProgress) {
+                    const scrollPercentage = (scrollY / documentHeight) * 100;
+                    scrollProgress.style.width = `${scrollPercentage}%`;
+                }
 
                 // Hero section video filter and subtle parallax
                 if (backgroundVideo) {
-                    const scrollProgress = Math.min(scrollY / window.innerHeight, 1);
+                    const scrollProgress = Math.min(scrollY / windowHeight, 1);
                     
                     const brightness = 0.7 - (scrollProgress * 0.2);
                     const grayscale = 0.2 + (scrollProgress * 0.3);
@@ -684,6 +826,20 @@
                 
                 lastScrollY = scrollY;
 
+                // Scene background activation based on scroll position
+                sceneBackgrounds.forEach(bg => {
+                    const section = bg.closest('.narrative-section');
+                    if (section) {
+                        const rect = section.getBoundingClientRect();
+                        const isInView = rect.top < windowHeight * 0.8 && rect.bottom > windowHeight * 0.2;
+                        
+                        if (isInView) {
+                            bg.classList.add('active');
+                        } else {
+                            bg.classList.remove('active');
+                        }
+                    }
+                });
 
                 // Narrative sections parallax and filter shifts
                 cinematicBlocks.forEach(block => {
