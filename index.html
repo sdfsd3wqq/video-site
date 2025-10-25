@@ -84,7 +84,7 @@
         }
         a:hover {
             color: var(--color-accent);
-            text-decoration: none; /* Remove underline on hover, custom indicator below */
+            text-decoration: none;
         }
 
         /* Ripple Effect for interactive elements */
@@ -92,8 +92,8 @@
             position: relative;
             overflow: hidden;
             transform: translate3d(0, 0, 0); /* Force GPU acceleration */
-            z-index: 1; /* Ensure ripple is above text/other content */
-            -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+            z-index: 1; 
+            -webkit-tap-highlight-color: transparent;
         }
 
         .ripple-effect::after {
@@ -108,13 +108,13 @@
             left: var(--ripple-x, 50%);
             width: var(--ripple-size, 0);
             height: var(--ripple-size, 0);
-            transform: translate(-50%, -50%) scale(0); /* Center and start small */
+            transform: translate(-50%, -50%) scale(0);
             transition: transform 0.6s ease-out, opacity 0.6s ease-out;
         }
 
         .ripple-effect.animate::after {
-            opacity: 0.2; /* Subtle visibility */
-            transform: translate(-50%, -50%) scale(1); /* Scale up to cover the element */
+            opacity: 0.2;
+            transform: translate(-50%, -50%) scale(1);
         }
 
         /* --- Header --- */
@@ -128,42 +128,42 @@
             align-items: center;
             padding: 0 4vw;
             height: var(--header-height);
-            background: var(--color-header-bg); /* Use theme-aware header background */
-            color: var(--color-header-text); /* Use theme-aware text color */
-            backdrop-filter: blur(8px); /* Frosted glass effect */
+            background: var(--color-header-bg);
+            color: var(--color-header-text);
+            backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             z-index: 1000;
             transition: background 0.5s ease, color 0.5s ease, transform 0.3s ease-in-out;
         }
 
         .site-header.header-hidden {
-            transform: translateY(calc(-100% - 1px)); /* Hide above viewport */
+            transform: translateY(calc(-100% - 1px));
         }
 
         .nav-brand {
             font-family: var(--font-display);
             font-weight: 700;
             font-size: 1.6em;
-            color: inherit; /* Inherit color from header */
+            color: inherit;
             text-decoration: none;
             padding: 0.5em 0;
         }
 
         .main-nav {
-            display: flex; /* Ensure nav and toggle button align properly on desktop */
+            display: flex;
             align-items: center;
-            flex-grow: 1; /* Allows nav to take up available space for justified content */
+            flex-grow: 1;
         }
         
         .main-nav .nav-links {
             list-style: none;
             display: flex;
             gap: 2.5vw;
-            margin-left: auto; /* Push nav links to the right */
+            margin-left: auto;
         }
 
         .main-nav .nav-links a {
-            color: inherit; /* Inherit color from header */
+            color: inherit;
             font-weight: 500;
             font-size: 1.05em;
             padding: 0.5em 0;
@@ -190,7 +190,7 @@
         .theme-toggle {
             background: none;
             border: none;
-            color: inherit; /* Inherit color from header */
+            color: inherit;
             cursor: pointer;
             font-size: 1.5em;
             display: flex;
@@ -199,10 +199,10 @@
             border-radius: 5px;
             transition: background-color 0.3s ease;
             -webkit-tap-highlight-color: transparent;
-            margin-left: 1.5em; /* Space between nav links and toggle */
+            margin-left: 1.5em;
         }
         .theme-toggle:hover {
-            background-color: rgba(255, 255, 255, 0.1); /* Subtle hover for toggle */
+            background-color: rgba(255, 255, 255, 0.1);
         }
         .theme-toggle svg {
             width: 1.2em;
@@ -220,7 +220,7 @@
 
         /* --- Main Content --- */
         main {
-            flex-grow: 1; /* Allows main to take up available space for sticky footer */
+            flex-grow: 1;
         }
 
         .cinematic-block {
@@ -230,16 +230,16 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: var(--header-height) 4vw 0; /* Adjust padding for fixed header */
-            overflow: hidden; /* Essential for containing parallax and video */
-            will-change: transform, opacity, filter; /* Optimize for animations */
+            padding: var(--header-height) 4vw 0;
+            overflow: hidden;
+            will-change: transform, opacity, filter;
         }
 
         /* Hero Section */
         .hero-section {
             min-height: 100vh;
-            padding-top: 0; /* Video goes to the very top */
-            color: #f0f0f0; /* Always light text on video */
+            padding-top: 0;
+            color: #f0f0f0;
         }
 
         .video-container {
@@ -249,7 +249,7 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            z-index: -2; /* Below overlay and content */
+            z-index: -2; /* BELOW OVERLAY AND CONTENT */
         }
 
         .background-video {
@@ -259,9 +259,9 @@
             position: absolute;
             top: 0;
             left: 0;
-            filter: brightness(0.7) grayscale(0.2); /* Subtle initial filter */
-            transition: filter 0.5s ease-out; /* Smooth filter transitions via JS */
-            will-change: transform, filter; /* Optimize for animations */
+            filter: brightness(0.7) grayscale(0.2);
+            transition: filter 0.5s ease-out;
+            will-change: transform, filter;
         }
 
         .video-overlay {
@@ -271,17 +271,17 @@
             width: 100%;
             height: 100%;
             background-color: var(--color-overlay);
-            z-index: -1; /* Above video, below content */
+            z-index: -1; /* ABOVE VIDEO, BELOW CONTENT */
         }
 
         .hero-content {
             position: relative;
             z-index: 1;
             max-width: 900px;
-            opacity: 0; /* Initial state for scroll-fade */
+            opacity: 0;
             transform: translateY(20px);
             transition: opacity 1s ease-out, transform 1s ease-out;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Enhance readability on video */
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
         .hero-content.is-visible {
             opacity: 1;
@@ -307,10 +307,10 @@
             color: var(--color-text);
             background-color: var(--color-primary);
             position: relative;
-            z-index: 1; /* Ensure text is above any potential background effects */
-            opacity: 0; /* Initial state for scroll-fade */
+            z-index: 1;
+            opacity: 0;
             transform: translateY(50px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out, filter 0.8s ease-out; /* Include filter transition */
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out, filter 0.8s ease-out;
             border-bottom: 1px solid rgba(128, 128, 128, 0.1);
         }
 
@@ -322,12 +322,12 @@
         .scene-text-content {
             max-width: 800px;
             margin: 0 auto;
-            background-color: var(--color-secondary); /* A subtle background for readability */
+            background-color: var(--color-secondary);
             padding: 3em;
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: background-color 0.5s ease, box-shadow 0.5s ease, transform 0.5s ease; /* For parallax by JS */
-            will-change: transform; /* Optimize for parallax */
+            transition: background-color 0.5s ease, box-shadow 0.5s ease, transform 0.5s ease;
+            will-change: transform;
         }
         body[data-theme='dark'] .scene-text-content {
             box-shadow: 0 10px 30px rgba(0,0,0,0.4);
@@ -386,19 +386,17 @@
 
         @media (max-width: 768px) {
             .site-header {
-                position: relative; /* Fixed to Relative for mobile */
+                position: relative;
                 flex-direction: column;
                 height: auto;
                 padding: 1.5em 4vw;
-                background: var(--color-secondary); /* Solid background for mobile header */
+                background: var(--color-secondary);
                 color: var(--color-text);
-                backdrop-filter: none; /* Disable blur on mobile for performance/simplicity */
+                backdrop-filter: none;
                 -webkit-backdrop-filter: none;
-                /* Remove header-hidden transformation when in mobile state */
                 transform: translateY(0) !important; 
             }
             
-            /* Remove fixed positioning offset */
             main {
                 margin-top: 0; 
             }
@@ -419,7 +417,7 @@
                 gap: 0.8em;
                 width: 100%;
                 text-align: center;
-                margin-left: 0; /* Remove left auto margin */
+                margin-left: 0;
             }
             .main-nav .nav-links li {
                 width: 100%;
@@ -429,13 +427,13 @@
                 padding: 0.8em 0;
                 background-color: var(--color-primary);
                 border-radius: 5px;
-                color: var(--color-text); /* Ensure links are readable */
+                color: var(--color-text);
             }
             .main-nav .nav-links a:hover {
-                background-color: var(--color-primary); /* Keep background solid on hover too */
+                background-color: var(--color-primary);
             }
             .main-nav .nav-links a::after {
-                display: none; /* Hide underline indicator on mobile nav items */
+                display: none;
             }
 
             .theme-toggle {
@@ -443,11 +441,11 @@
                 top: 1em;
                 right: 1em;
                 font-size: 1.2em;
-                margin-left: 0; /* Remove gap */
+                margin-left: 0;
             }
 
             .hero-section {
-                min-height: 80vh; /* Adjust hero height for mobile */
+                min-height: 80vh;
                 padding-top: 0;
             }
 
@@ -461,7 +459,7 @@
 
             .narrative-section {
                 padding: 10vw 4vw;
-                min-height: 80vh; /* Adjust for smaller screens */
+                min-height: 80vh;
             }
 
             .scene-text-content {
@@ -509,7 +507,7 @@
     <main>
         <section id="hero-section" class="hero-section cinematic-block" data-scroll-fade>
             <div class="video-container">
-                <video autoplay muted loop playsinline src="Video.mp4" class="background-video">
+                <video autoplay muted loop playsinline preload="auto" src="Video.mp4" class="background-video">
                     Your browser does not support the video tag. Please consider updating your browser.
                 </video>
                 <div class="video-overlay"></div>
@@ -572,18 +570,16 @@
             const themeToggle = document.getElementById('theme-toggle');
             const body = document.body;
 
-            // Set initial theme based on localStorage or user's system preference, defaulting to dark
+            // Set initial theme based on localStorage or user's system preference
             const getInitialTheme = () => {
                 const savedTheme = localStorage.getItem('theme');
                 if (savedTheme) {
                     return savedTheme;
                 }
-                // Check for system preference
                 return window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
             };
 
             const initialTheme = getInitialTheme();
-            // This is already set in the HTML, but re-applying ensures persistence
             body.setAttribute('data-theme', initialTheme);
 
             themeToggle.addEventListener('click', () => {
@@ -600,36 +596,28 @@
             // --- Ripple Effect for Interactive Elements ---
             document.querySelectorAll('.ripple-effect').forEach(element => {
                 element.addEventListener('mousedown', (e) => {
-                    // Only create ripple if the element itself is clicked, not a child
                     if (e.target !== element && !e.target.closest('.ripple-effect') === element) return;
 
                     const rect = e.currentTarget.getBoundingClientRect();
-                    // Calculate size based on the larger dimension, scaled up for a wider ripple
                     const size = Math.max(rect.width, rect.height) * 1.8;
-                    // Position ripple at click point relative to element's top-left corner
                     const x = e.clientX - rect.left;
                     const y = e.clientY - rect.top;
 
-                    // Set CSS variables for the ::after pseudo-element to control its position and size
                     e.currentTarget.style.setProperty('--ripple-x', `${x}px`);
                     e.currentTarget.style.setProperty('--ripple-y', `${y}px`);
                     e.currentTarget.style.setProperty('--ripple-size', `${size}px`);
 
-                    // To restart a CSS transition/animation, remove the class, force a reflow, then re-add it.
                     e.currentTarget.classList.remove('animate');
                     void e.currentTarget.offsetWidth; // Trigger reflow
                     e.currentTarget.classList.add('animate');
                 });
 
-                // Function to remove the 'animate' class
                 const resetRipple = (e) => {
-                    // Delay removal slightly to allow the animation to play out if mouseup is quick
                     setTimeout(() => {
                         e.currentTarget.classList.remove('animate');
-                    }, 300); // This should be less than the CSS transition duration (0.6s) for smoothness
+                    }, 300);
                 };
 
-                // Attach event listeners to reset the ripple effect
                 element.addEventListener('mouseup', resetRipple);
                 element.addEventListener('mouseleave', resetRipple);
             });
@@ -640,25 +628,22 @@
             const heroContent = document.querySelector('.hero-content');
             const backgroundVideo = document.querySelector('.background-video');
             const siteHeader = document.querySelector('.site-header');
-            const isMobile = window.innerWidth <= 768;
 
-            // Intersection Observer for fade-in effect on sections as they enter the viewport
+            // Intersection Observer for fade-in effect
             const observerOptions = {
-                root: null, // viewport as the root
+                root: null,
                 rootMargin: '0px',
-                threshold: 0.1 // Trigger when 10% of the item is visible
+                threshold: 0.1
             };
 
             const sectionObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
-                        // For hero content specifically (only fades in once)
                         if (entry.target.id === 'hero-section' && heroContent) {
                             heroContent.classList.add('is-visible');
                         }
                     } 
-                    // No need for an else block unless you want the fade-out effect.
                 });
             }, observerOptions);
 
@@ -666,7 +651,7 @@
                 sectionObserver.observe(block);
             });
 
-            // Parallax and filter effects on scroll for continuous visual feedback
+            // Parallax and filter effects
             let lastScrollY = 0;
             let ticking = false;
 
@@ -675,22 +660,18 @@
 
                 // Hero section video filter and subtle parallax
                 if (backgroundVideo) {
-                    // Calculate scroll progress relative to viewport height for filter intensity
-                    const scrollProgress = Math.min(scrollY / window.innerHeight, 1); // clamps to 0-1
+                    const scrollProgress = Math.min(scrollY / window.innerHeight, 1);
                     
-                    // Adjust brightness, grayscale, and blur based on scroll
-                    const brightness = 0.7 - (scrollProgress * 0.2); // Reduces to 0.5
-                    const grayscale = 0.2 + (scrollProgress * 0.3); // Increases to 0.5
-                    const blur = scrollProgress * 2; // Up to 2px blur
+                    const brightness = 0.7 - (scrollProgress * 0.2);
+                    const grayscale = 0.2 + (scrollProgress * 0.3);
+                    const blur = scrollProgress * 2;
                     backgroundVideo.style.filter = `brightness(${brightness}) grayscale(${grayscale}) blur(${blur}px)`;
 
-                    // Subtle parallax for the video itself
-                    // Use translate3d for hardware acceleration
+                    // Subtle parallax for the video itself (translate3d for performance)
                     backgroundVideo.style.transform = `translate3d(0, ${scrollY * 0.3}px, 0)`;
                 }
 
-                // Header visibility based on scroll direction (hide on scroll down, show on scroll up)
-                // Only apply on larger screens where header is fixed
+                // Header visibility
                 if (window.innerWidth > 768) {
                     if (scrollY > lastScrollY && scrollY > siteHeader.offsetHeight) {
                         siteHeader.classList.add('header-hidden');
@@ -698,47 +679,44 @@
                         siteHeader.classList.remove('header-hidden');
                     }
                 } else {
-                     // Ensure header is never hidden on mobile/small screens
                     siteHeader.classList.remove('header-hidden');
                 }
                 
                 lastScrollY = scrollY;
 
 
-                // Narrative sections parallax and background filter shifts
+                // Narrative sections parallax and filter shifts
                 cinematicBlocks.forEach(block => {
-                    // Only apply effects to narrative sections that are currently visible
                     if (block.classList.contains('narrative-section') && block.classList.contains('is-visible')) {
                         const rect = block.getBoundingClientRect();
                         const viewportHeight = window.innerHeight;
 
-                        // Calculate vertical position relative to viewport center for parallax
+                        // Calculate vertical position for parallax
                         const centerOffset = rect.top + rect.height / 2 - viewportHeight / 2;
-                        const parallaxStrength = 0.1; // Controls how much the content moves
+                        const parallaxStrength = 0.1;
 
-                        // Apply subtle parallax to the text content within the block
+                        // Apply subtle parallax to the text content (translate3d for performance)
                         const textContent = block.querySelector('.scene-text-content');
                         if (textContent) {
-                            // Use translate3d for hardware acceleration
                             textContent.style.transform = `translate3d(0, ${centerOffset * parallaxStrength * -1}px, 0)`;
                         }
 
-                        // Apply subtle filter shifts based on scroll position within each section
+                        // Apply subtle filter shifts based on scroll position
                         const sectionProgress = Math.min(1, Math.max(0, (viewportHeight - rect.top) / (viewportHeight + rect.height)));
                         let filterValue = '';
 
-                        // Custom filter effects for each 'scene' to enhance narrative
+                        // Custom filter effects for each 'scene'
                         switch (block.id) {
-                            case 'depths': // Scene 2: Emphasize depth, mystery
+                            case 'depths':
                                 filterValue = `grayscale(${0.2 + sectionProgress * 0.3}) brightness(${1 - sectionProgress * 0.15}) saturate(${1 - sectionProgress * 0.1})`;
                                 break;
-                            case 'harmony': // Scene 3: Warmth, connection
+                            case 'harmony':
                                 filterValue = `hue-rotate(${sectionProgress * 15}deg) saturate(${1 + sectionProgress * 0.1}) brightness(${1 + sectionProgress * 0.05})`;
                                 break;
-                            case 'echoes': // Scene 4: Reflective, slightly faded
+                            case 'echoes':
                                 filterValue = `sepia(${sectionProgress * 0.2}) contrast(${1 + sectionProgress * 0.05}) brightness(${1 - sectionProgress * 0.03})`;
                                 break;
-                            case 'outro': // Scene 5: Concluding, ethereal
+                            case 'outro':
                                 filterValue = `brightness(${1 - sectionProgress * 0.05}) blur(${sectionProgress * 0.5}px) saturate(${1 - sectionProgress * 0.05})`;
                                 break;
                             default:
@@ -747,7 +725,7 @@
                         }
                         block.style.filter = filterValue;
                     } else if (block.classList.contains('narrative-section') && !block.classList.contains('is-visible')) {
-                        // Reset filters if section is not visible to prevent lingering effects
+                        // Reset when not visible
                         block.style.filter = 'none';
                         const textContent = block.querySelector('.scene-text-content');
                         if (textContent) {
@@ -769,7 +747,7 @@
 
             window.addEventListener('scroll', requestTick);
 
-            // Initial call to set states correctly on load, crucial for hero section
+            // Initial call
             requestTick();
         });
     </script>
