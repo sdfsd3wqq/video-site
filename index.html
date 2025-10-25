@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single File Video Player</title>
+    
+    <style>
+        /* CSS starts here */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Use min-height 100vh to center vertically on the page */
+            min-height: 100vh; 
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+
+        .video-container {
+            background: #222;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            max-width: 670px; /* Adjusted for the 640px video width + padding */
+        }
+
+        #myVideo {
+            display: block;
+            width: 100%; /* Make video fill the container */
+            height: auto;
+            background-color: #000;
+        }
+
+        .controls {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .controls button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #007bff; /* Blue button color */
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+
+        .controls button:hover {
+            background-color: #0056b3;
+        }
+        /* CSS ends here */
+    </style>
+</head>
+<body>
+
+    <div class="video-container">
+        <video id="myVideo" width="640" height="360">
+            <source src="your_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <div class="controls">
+            <button id="playPauseButton">Play / Pause</button>
+            <button id="stopButton">Stop</button>
+            <button id="fullscreenButton">Full Screen</button>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript starts here
+        // Get references to the HTML elements
+        const video = document.getElementById('myVideo');
+        const playPauseButton = document.getElementById('playPauseButton');
+        const stopButton = document.getElementById('stopButton');
+        const fullscreenButton = document.getElementById('fullscreenButton');
+
+        // 1. Play/Pause functionality
+        playPauseButton.addEventListener('click', () => {
+            if (video.paused || video.ended) {
+                // If the video is paused or has ended, play it
+                video.play();
+                playPauseButton.textContent = 'Pause';
+            } else {
+                // If the video is playing, pause it
+                video.pause();
+                playPauseButton.textContent = 'Play';
+            }
+        });
+
+        // 2. Stop functionality (Pause and seek to the beginning)
+        stopButton.addEventListener('click', () => {
+            video.pause(); // Pause the video
+            video.currentTime = 0; // Set the current time to the beginning
+            playPauseButton.textContent = 'Play / Pause'; // Reset button state
+        });
+
+        // 3. Full Screen functionality
+        fullscreenButton.addEventListener('click', () => {
+            // Use the vendor-prefixed methods for cross-browser compatibility
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.webkitRequestFullscreen) { // Safari
+                video.webkitRequestFullscreen();
+            } else if (video.msRequestFullscreen) { // IE11
+                video.msRequestFullscreen();
+            }
+        });
+
+        // Optional: Keep the button text synchronized with the actual video state
+        video.addEventListener('pause', () => {
+            playPauseButton.textContent = 'Play / Pause';
+        });
+
+        video.addEventListener('play', () => {
+            playPauseButton.textContent = 'Pause';
+        });
+
+        // Optional: Initial state of the button
+        if (video.autoplay) {
+            playPauseButton.textContent = 'Pause';
+        } else {
+            playPauseButton.textContent = 'Play / Pause';
+        }
+        // JavaScript ends here
+    </script>
+
+</body>
+</html>
